@@ -1,0 +1,49 @@
+"""
+airflow dag header
+    dag_id: {{ dag_id }}
+"""
+import os
+import os.path
+from datetime import datetime, timedelta
+
+from airflow.contrib.operators.bigquery_operator import BigQueryOperator
+from airflow.contrib.operators.bigquery_check_operator import BigQueryCheckOperator, BigQueryValueCheckOperator
+from airflow.models import DAG
+from airflow.operators.bash_operator import BashOperator
+from airflow.operators.python_operator import PythonOperator
+
+## start date & schedule
+dt_start = datetime.combine(datetime.today() - timedelta(1), datetime.min.time())
+start_date = "{{ start_date }}"
+if start_date:
+    dt_start = datetime.strptime(start_date, "%Y-%m-%d")
+
+schedule = "{{ schedule }}"
+if not schedule:
+    schedule = None
+
+## search directories
+search_diretories = "{{ search_diretories }}".split(",")
+
+
+## dag trigger
+def on_trigger(context, dag_run_obj):
+    if context["params"]["condition_param"]:
+        return dag_run_obj
+
+args = {
+    "owner": "airflow",
+    "depends_on_past": False,
+    "start_date": dt_start,
+    "retries": 3,
+    "retry_delay": timedelta(minutes=1),
+    "email": "",
+    "email_on_failure": True
+}
+
+dag = DAG(dag_id="{{ dag_id }}",
+          default_args=args,
+          schedule_interval=schedule,
+          template_searchpath=search_diretories,
+          max_active_runs=1,
+          catchup={{ dag_catchup }})
