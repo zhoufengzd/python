@@ -1,6 +1,6 @@
 def swap_word_and_case(input_str):
     words = input_str.split()
-    words_rev = " ".join([w.swapcase() for w in reversed(words) if w])
+    words_rev = " ".join([w.swapcase() for w in reversed(words)])
     print(words_rev)
 
 if __name__ == "__main__":
