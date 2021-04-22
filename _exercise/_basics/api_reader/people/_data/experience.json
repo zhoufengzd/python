@@ -1,0 +1,77 @@
+[
+  {
+    "company": {
+      "name": "hallspot",
+      "size": "1-10",
+      "id": "hallspot",
+      "founded": "2013",
+      "industry": "computer software",
+      "location": {
+        "name": "portland, oregon, united states",
+        "locality": "portland",
+        "region": "oregon",
+        "country": "united states",
+        "continent": "north america",
+        "street_address": "1231 northwest hoyt street",
+        "address_line_2": "suite 202",
+        "postal_code": "97209",
+        "geo": "45.52,-122.67"
+      },
+      "linkedin_url": "linkedin.com/company/hallspot",
+      "linkedin_id": "3019184",
+      "facebook_url": null,
+      "twitter_url": "twitter.com/hallspot",
+      "website": "hallspot.com"
+    },
+    "location_names": [],
+    "end_date": "2015-02",
+    "start_date": "2012-08",
+    "title": {
+      "name": "co-founder",
+      "role": null,
+      "sub_role": null,
+      "levels": [
+        "owner"
+      ]
+    },
+    "is_primary": false
+  },
+  {
+    "company": {
+      "name": "people data labs",
+      "size": "11-50",
+      "id": "peopledatalabs",
+      "founded": "2015",
+      "industry": "computer software",
+      "location": {
+        "name": "san francisco, california, united states",
+        "locality": "san francisco",
+        "region": "california",
+        "country": "united states",
+        "continent": "north america",
+        "street_address": "455 market street",
+        "address_line_2": "suite 1670",
+        "postal_code": "94105",
+        "geo": "37.77,-122.41"
+      },
+      "linkedin_url": "linkedin.com/company/peopledatalabs",
+      "linkedin_id": "18170482",
+      "facebook_url": "facebook.com/peopledatalabs",
+      "twitter_url": "twitter.com/peopledatalabs",
+      "website": "peopledatalabs.com"
+    },
+    "location_names": [],
+    "end_date": null,
+    "start_date": "2015-03",
+    "title": {
+      "name": "co-founder and chief executive officer",
+      "role": null,
+      "sub_role": null,
+      "levels": [
+        "owner",
+        "cxo"
+      ]
+    },
+    "is_primary": true
+  }
+]

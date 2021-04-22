@@ -1,0 +1,8 @@
+{
+  // number of current employees at given month
+  "employee_counts": {
+    "April 2020": 45,
+    "May 2020": 47,
+    "June 2020": 51,
+  }
+}
