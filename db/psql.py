@@ -9,7 +9,7 @@ import os.path
 from contextlib import contextmanager
 
 import psycopg2.pool
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
 
 class DBConnection(object):
@@ -19,8 +19,8 @@ class DBConnection(object):
 
     def __init__(self, profile=None):
         self.driver = None
-        if os.path.exists(profile):
-            load_dotenv(profile)
+        # if os.path.exists(profile):
+        #     load_dotenv(profile)
 
     def connect(self, db_name, db_host=None, db_user=None, db_pwd=None, db_port=None, min_pool=None, max_pool=None):
         if not db_host:

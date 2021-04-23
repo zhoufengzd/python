@@ -1,11 +1,13 @@
 #!/usr/bin/env python
 import json
+import csv
 import logging
 from os import makedirs
 from os import path
 import random
 import copy
 import requests
+import base64
 
 # Reference:
 #   experience: {"company":{ "name": "hallspot", "id": "hallspot",}, "start_date": "", "title": {}: "is_primary": true}
@@ -50,6 +52,8 @@ class ExperienceReader():
                 dt["company"]["id"] = company
                 dt["company"]["linkedin_url"] = "linkedin.com/company/" + company
                 dt["company"]["linkedin_id"] = 100 + cid
+                dt["company"]["twitter_url"] = "twitter.com/" + company
+                dt["company"]["website"] = company + ".garden"
 
                 while True:
                     start_month = random.randint(1, 5)
@@ -69,15 +73,30 @@ class ExperienceReader():
             simulated_data.sort(key=start_date)
             simulated_data[2]["is_primary"] = True
             simulated_data[2]["end_date"] = None
-            simulated_data_path = path.join(self._generated_dir, "e" + str(pid) + ".json")
-            self._write_data(simulated_data_path, simulated_data)
+            simulated_data_path = path.join(self._generated_dir, "e" + str(pid) + ".json.csv")
+            self._write_data(simulated_data_path, pid, simulated_data)
 
     @staticmethod
-    def _write_data(path, data):
+    def _write_data(path, pid, data):
         with open(path, "w") as fout:
             for row in data:
-                json.dump(row, fout)
+                # str_line = json.dumps(row)
+                # fout.write(str_line)
+                # json.dump(row, fout)
+                fout.write(str(pid))
+                fout.write(",")
+                fout.write(base64.b64encode(json.dumps(row).encode()).decode("utf-8"))
                 fout.write("\n")
+
+        # with open(path, "w") as fout:
+        #     csvwriter = csv.writer(fout, quoting=csv.QUOTE_MINIMAL)
+        #     for row in data:
+        #         csvwriter.writerow(str(row))
+                # fout.write("\n")
+
+            # csvwriter.writerow(fields)
+            # csvwriter.writerows(rows)
+
 
     def _load_data(self):
         self._load_json("experience")
