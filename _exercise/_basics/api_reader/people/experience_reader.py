@@ -70,6 +70,8 @@ class ExperienceReader():
 
             def start_date(x):
                 return x["start_date"]
+
+            # keep the last employment open-ended
             simulated_data.sort(key=start_date)
             simulated_data[2]["is_primary"] = True
             simulated_data[2]["end_date"] = None
@@ -87,15 +89,6 @@ class ExperienceReader():
                 fout.write(",")
                 fout.write(base64.b64encode(json.dumps(row).encode()).decode("utf-8"))
                 fout.write("\n")
-
-        # with open(path, "w") as fout:
-        #     csvwriter = csv.writer(fout, quoting=csv.QUOTE_MINIMAL)
-        #     for row in data:
-        #         csvwriter.writerow(str(row))
-                # fout.write("\n")
-
-            # csvwriter.writerow(fields)
-            # csvwriter.writerows(rows)
 
 
     def _load_data(self):

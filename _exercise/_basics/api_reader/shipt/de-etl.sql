@@ -88,13 +88,13 @@ select t.total_payment, round((t.total_payment / c.customer_count)::numeric, 2) 
 
 -- ## 2. find and clean up duplicated items
 -- assumption: 1. upc is unique. 2. same measure (size), take later price, likely price is update
-select *, rank() over (partition by upc, size order by id desc) as rk
+select *, row_number() over (partition by upc, size order by id desc) as rk
     from items
         order by upc, id desc;
 
 -- define remove target
 with dup_marked as (
-    select *, rank() over (partition by upc, size order by id desc) as rk
+    select *, row_number() over (partition by upc, size order by id desc) as rk
         from items
 ),
 dup_matched as (
@@ -127,7 +127,7 @@ update orders o set item_id = ref.item_id
 
 
 with dup_marked as (
-    select *, rank() over (partition by upc, size order by id desc) as rk
+    select *, row_number() over (partition by upc, size order by id desc) as rk
         from items
 )
 delete from items where id in (select id from dup_marked where rk > 1);
@@ -209,7 +209,7 @@ select * from category_map order by id;
 
 -- #II.1
 -- By using a view / or materialized view to hide business logic change.
---   This will help reduce the complexity and support easier schema update / data fixes
+--   This will help reduce the complexity and make schema update / data fixes easier
 create view imported_products_view as
     with mapping_fix as (   -- this could be maintained outside as a standalone patching table
         select 30273 as upc, '2_PRODUCE_FRUITS'::text as category
