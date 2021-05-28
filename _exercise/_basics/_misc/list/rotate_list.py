@@ -1,6 +1,9 @@
 # matrix operation
 
-## adjust positions if out of bound
+# adjust positions if out of bound
+from typing import List
+
+
 def __adjust_pos(pos, length):
     """
     move out of bounds pos to the start or end of the array
@@ -15,46 +18,44 @@ def __adjust_pos(pos, length):
     return pos
 
 
-## rotate
-def rotate(l, npos):
+# rotate
+def rotate(lst, n_pos):
     """rotate a list by +/- n positions"""
-    l_length = len(l)
-    npos = npos % l_length
-    if not npos:
-        return l
+    l_length = len(lst)
+    n_pos = n_pos % l_length
+    if not n_pos:
+        return lst
 
     rotated = [None] * l_length
-    for idx, e in enumerate(l):
-        rotated[__adjust_pos(idx + npos, l_length)] = e
+    for idx, e in enumerate(lst):
+        rotated[__adjust_pos(idx + n_pos, l_length)] = e
 
     return rotated
 
 
 # array to matrix
-def __to_matrix(l, column_size):
+def __to_matrix(lst, column_size):
     """
                                 | 1 2 3 |
     [1, 2, 3, 4, 5, 6, 7, 8] => | 8   4 |
                                 | 7 6 5 |
     """
-    l_length = len(l)
+    l_length = len(lst)
     if not column_size or column_size >= l_length:
-        return [l]
+        return [lst]
 
-    matrix = list()
     if column_size == 1:
         row_size = l_length
     elif l_length // column_size == 1:
         row_size = 2
     else:  # top row + bottom row + side columns in between
         row_size = ((l_length - 2 * column_size + 1) // 2 + 2)
-    for i in range(row_size):
-        matrix.append([" "] * column_size)
+    matrix = [[" "] * column_size for j in range(row_size)]
 
     current_row = 0
     current_col = 0
     direction = "right"  # "right", "down", "left", "up"
-    for e in l:
+    for e in lst:
         # top row
         if direction == "right":
             if current_col <= column_size - 1:
@@ -100,34 +101,34 @@ def __print_matrix(matrix):
 
 
 def __test_array_rotation_v1():
-    for l in [[0], [0, 1], [0, 1, 2], [0, 1, 2, 3]]:
+    for lst in [[0], [0, 1], [0, 1, 2], [0, 1, 2, 3]]:
         for npos in range(-5, 5):
-            r = rotate(l, npos)
-            print(f"rotate {npos}: {l} => {r}")
+            r = rotate(lst, npos)
+            print(f"rotate {npos}: {lst} => {r}")
 
 
 def __test_array_rotation_v2():
-    for l in [[0, 1]]:
-        for npos in [10, 11]:
-            r = rotate(l, npos)
-            print(f"rotate {npos}: {l} => {r}")
+    for lst in [[0, 1]]:
+        for n_pos in [10, 11]:
+            r = rotate(lst, n_pos)
+            print(f"rotate {n_pos}: {lst} => {r}")
 
 
-def __test_arry_to_matrix():
-    l = [e for e in range(1, 9)]
-    print(f"input array: {l}")
-    for column_size in range(10):
-        print(f"column_size = {column_size}")
-        __print_matrix(__to_matrix(l, column_size))
+def __test_array_to_matrix():
+    lst: List[int] = [e for e in range(1, 9)]
+    print(f"input array: {lst}")
+    for c_size in range(10):
+        print(f"column size = {c_size}")
+        __print_matrix(__to_matrix(lst, c_size))
 
 
 if __name__ == "__main__":
-    l = [e for e in range(1, 13)]
-    column_size = 4
-    matrix = __to_matrix(l, column_size)
+    dt = [e for e in range(1, 13)]
+    col_size = 4
+    m = __to_matrix(dt, col_size)
     print("-- input matrix: ")
-    __print_matrix(matrix)
+    __print_matrix(m)
 
-    rotated_matrix = __to_matrix(rotate(l, 3), column_size)
+    rotated_matrix = __to_matrix(rotate(dt, 18), col_size)
     print("-- rotated: ")
     __print_matrix(rotated_matrix)
