@@ -46,7 +46,7 @@ def __to_matrix(l, column_size):
         row_size = l_length
     elif l_length // column_size == 1:
         row_size = 2
-    else:   # top row + bottom row + side columns in between
+    else:  # top row + bottom row + side columns in between
         row_size = ((l_length - 2 * column_size + 1) // 2 + 2)
     for i in range(row_size):
         matrix.append([" "] * column_size)
@@ -98,30 +98,36 @@ def __print_matrix(matrix):
     for row in matrix:
         print(" | ".join([f"{e:2}" for e in row]))
 
+
+def __test_array_rotation_v1():
+    for l in [[0], [0, 1], [0, 1, 2], [0, 1, 2, 3]]:
+        for npos in range(-5, 5):
+            r = rotate(l, npos)
+            print(f"rotate {npos}: {l} => {r}")
+
+
+def __test_array_rotation_v2():
+    for l in [[0, 1]]:
+        for npos in [10, 11]:
+            r = rotate(l, npos)
+            print(f"rotate {npos}: {l} => {r}")
+
+
+def __test_arry_to_matrix():
+    l = [e for e in range(1, 9)]
+    print(f"input array: {l}")
+    for column_size in range(10):
+        print(f"column_size = {column_size}")
+        __print_matrix(__to_matrix(l, column_size))
+
+
 if __name__ == "__main__":
-    ## array rotation test
-    # for l in [[0], [0, 1], [0, 1, 2], [0, 1, 2, 3]]:
-    #     for npos in range(-5, 5):
-    #         r = rotate(l, npos)
-    #         print(f"rotate {npos}: {l} => {r}")
-
-    # for l in [[0, 1]]:
-    #     for npos in [10, 11]:
-    #         r = rotate(l, npos)
-    #         print(f"rotate {npos}: {l} => {r}")
-
-    # l = [e for e in range(1, 9)]
-    # print(f"input array: {l}")
-    # for column_size in range(10):
-    #     # if column_size != 8:
-    #     #     continue
-    #     print(f"column_size = {column_size}")
-    #     __print_matrix(__to_matrix(l, column_size))
-
     l = [e for e in range(1, 13)]
-    matrix = __to_matrix(l, 4)
-    rotated_matrix = __to_matrix(rotate(l, 3), 4)
-    print(f"input matrix: ")
+    column_size = 4
+    matrix = __to_matrix(l, column_size)
+    print("-- input matrix: ")
     __print_matrix(matrix)
-    print(f"rotated: ")
+
+    rotated_matrix = __to_matrix(rotate(l, 3), column_size)
+    print("-- rotated: ")
     __print_matrix(rotated_matrix)
