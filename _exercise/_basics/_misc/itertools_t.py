@@ -9,7 +9,6 @@ numbers = [23, 20, 44, 32, 7, 12]
 decimals = [0.1, 0.7, 0.4]
 
 
-# cypresstunnel@gmail.com kc9Umfb52qRZxT4
 def chain_t():
     chained = list(itertools.chain(letters, booleans, decimals))
     letters.append("g") # will not affect the chained output
