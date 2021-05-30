@@ -16,8 +16,12 @@ def chain_t():
 
 
 def count_t():
-    itertools.count(10, 0.25)
+    for i in itertools.count(start=1, step=2):
+        if i > 5:
+            break
+        print(i)
 
 
 if __name__ == "__main__":
-    chain_t()
+    # chain_t()
+    count_t()
