@@ -19,5 +19,5 @@ def a2i(number_str):
 
 
 if __name__ == "__main__":
-    for s in ["123", "-123", "+123", " x "]:
-        print("{} => {}".format(s, a2i(s)))
+    for a in ["123", "-123", "+123", " x "]:
+        print(f"{a} => {a2i(a)}")

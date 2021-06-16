@@ -1,5 +1,6 @@
 #
 def int_dict_v1(keys):
+    """return {key:None, ...}"""
     return dict.fromkeys(keys)
 
 
@@ -16,16 +17,15 @@ def iterate_dict(dt):
     for k, v in dt.items():
         print(f"{k} => {v}")
 
+    print("\n -- iterate by unsorted key, value only: ")
+    for v in dt.values():
+        print("{} => " + f"{v}")
+
 
 def iterate_dict_key_sorted(dt):
     print("\n -- iterate sorted keys")
     for k in sorted(dt.keys()):
         print(f"{k}=>{dt[k]}")
-
-
-def check_dict(dt):
-    print("## -- by default dictionary is not sorted: ")
-    print(dt)
 
 
 def sort_dict(dt):
@@ -43,8 +43,14 @@ if __name__ == "__main__":
     fruits[1] = "Banana"
     fruits[2] = "Apple"
     fruits[3] = "Cranberry"
+    # print(fruits)
+    # not sorted: {2: 'Apple', 3: 'Cranberry', 1: 'Banana'}
 
-    check_dict(fruits)
     iterate_dict(fruits)
     iterate_dict_key_sorted(fruits)
     sort_dict(fruits)
+
+    # deep copy
+    fruits_cp = fruits.copy()
+    fruits[4] = "grape"
+    print(fruits_cp)

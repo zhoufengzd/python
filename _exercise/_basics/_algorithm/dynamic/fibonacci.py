@@ -4,6 +4,7 @@ def fibonacci(n: int):
         f[i] = f[i - 1] + f[i - 2]
     return f[n]
 
+
 def fibonacci3(n: int):
     "sum of three previous numbers"
     f = {0: 1, 1: 1, 2: 1}
