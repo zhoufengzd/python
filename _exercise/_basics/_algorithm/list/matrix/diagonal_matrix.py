@@ -72,7 +72,7 @@ def to_diagonally(matrix):
         if row_id == 0: # the first row needs to iterate every element
             for col_id, i in enumerate(current_row):
                 converted.append(get_diagonal_elements(matrix, row_size, col_size, row_id, col_id))
-        else: # follow rows only need to iterate the last element
+        else: # following rows only need to iterate the last element
             converted.append(get_diagonal_elements(matrix, row_size, col_size, row_id, col_size - 1))
         row_id += 1
     return converted

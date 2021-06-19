@@ -12,7 +12,8 @@ def itor(num):
            "VI", "VII", "VIII", "IX"]
 
      # Converting to roman
-     thousands = m[num // 1000]
+     # thousands = m[num // 1000]
+     thousands = ["M"] * num // 1000
      hundereds = c[(num % 1000) // 100]
      tens =  x[(num % 100) // 10]
      ones = i[num % 10]

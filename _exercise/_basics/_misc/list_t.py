@@ -1,29 +1,29 @@
 import copy
 
-def sort_list():
-    l = [[2, 30], [1, 40]]
-    s1 = copy.deepcopy(l)
+def sort_list(lst):
+    s1 = copy.deepcopy(lst)
     s1.sort()
-    s2 = copy.deepcopy(l)
+    print(f"sort(): {s1}")
+    s2 = copy.deepcopy(lst)
     s2.sort(key=lambda e: e[1])
-    s3 = copy.deepcopy(l)
+    print(f"sort(key=lambda e: e[1]): {s2}")
+    s3 = copy.deepcopy(lst)
     s3.sort(reverse=True)
-    print(f"{l} => sort: {s1} | sort by e[1]: {s2} | reverse=True: {s3}")
+    print(f"sort(reverse=True): {s3}")
 
-def reverse_list(l):
-    reversed = copy.deepcopy(l)
 
+def reverse_list(lst):
+    reversed = copy.deepcopy(lst)
     reversed.reverse()
     return reversed
 
-def iterate_list(l):
-    for idx, e in enumerate(l):
+
+def iterate_list(lst):
+    for idx, e in enumerate(lst):
         print(f"l[{idx}] = {e}")
 
+
 if __name__ == "__main__":
-    # sort_list()
-
-    systems = ['Windows', 'macOS', 'Linux']
-    print("{} => {}".format(systems, reverse_list(systems)))
-
-    iterate_list(systems)
+    l = [("A", 3), ("C", 1), ("B", 2)]
+    iterate_list(l)
+    sort_list(l)
