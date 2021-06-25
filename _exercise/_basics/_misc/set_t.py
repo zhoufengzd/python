@@ -1,5 +1,5 @@
 
-x = {1, 2, 3}
+x = {4, 1, 2, 3}
 y = x.copy()
 print(f"x = {x}; y = x.copy() = {y}")
 
