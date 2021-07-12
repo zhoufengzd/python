@@ -1,11 +1,11 @@
 # Function to check if two queens threaten each other or not
-def is_safe(matrix, row, col, matrix_size):
+def is_allowed(matrix, row, col, matrix_size):
     # return false if two queens share the same column
     for i in range(row):
         if matrix[i][col] == 'Q':
             return False
 
-    # return false if two queens share the same `` diagonal
+    # left diagonal check
     (i, j) = (row, col)
     while i >= 0 and j >= 0:
         if matrix[i][j] == 'Q':
@@ -13,7 +13,7 @@ def is_safe(matrix, row, col, matrix_size):
         i = i - 1
         j = j - 1
 
-    # return false if two queens share the same `/` diagonal
+    # right diagonal check
     (i, j) = (row, col)
     while i >= 0 and j < matrix_size:
         if matrix[i][j] == 'Q':
@@ -30,26 +30,26 @@ def print_matrix(matrix):
     print()
 
 
-def n_queen(matrix, row, matrix_size):
+def n_queen(matrix, curr_row, matrix_size):
     # stop check
-    if row == matrix_size:
+    if curr_row == matrix_size:
         print_matrix(matrix)
         return
 
-    # place queen at every square in the current row `row`
+    # place queen at every square in the `curr_row`
     # and recur for each valid movement
     for col in range(matrix_size):
 
         # if no two queens threaten each other
-        if is_safe(matrix, row, col, matrix_size):
+        if is_allowed(matrix, curr_row, col, matrix_size):
             # place queen on the current square
-            matrix[row][col] = 'Q'
+            matrix[curr_row][col] = 'Q'
 
             # recur for the next row
-            n_queen(matrix, row + 1, matrix_size)
+            n_queen(matrix, curr_row + 1, matrix_size)
 
             # backtrack and remove the queen from the current square
-            matrix[row][col] = '–'
+            matrix[curr_row][col] = '–'
 
 
 if __name__ == '__main__':
