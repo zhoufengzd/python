@@ -1,4 +1,4 @@
-# N queens problem
+# matrix_size queens problem
 def solveNQueens(n):
     output = []
     def dfs(row, queens, diags):

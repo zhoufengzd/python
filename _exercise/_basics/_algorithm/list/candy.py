@@ -1,4 +1,4 @@
-# There are N children standing in a line with some rating value. You want to distribute a minimum number of candies to these children such that:
+# There are matrix_size children standing in a line with some rating value. You want to distribute a minimum number of candies to these children such that:
 # Each child must have at least one candy.
 # The children with higher ratings will have more candies than their neighbours.
 

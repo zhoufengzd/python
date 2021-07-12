@@ -1,5 +1,5 @@
 # Function to check if two queens threaten each other or not
-def is_safe(matrix, row, col):
+def is_safe(matrix, row, col, matrix_size):
     # return false if two queens share the same column
     for i in range(row):
         if matrix[i][col] == 'Q':
@@ -15,7 +15,7 @@ def is_safe(matrix, row, col):
 
     # return false if two queens share the same `/` diagonal
     (i, j) = (row, col)
-    while i >= 0 and j < N:
+    while i >= 0 and j < matrix_size:
         if matrix[i][j] == 'Q':
             return False
         i = i - 1
@@ -30,33 +30,29 @@ def print_matrix(matrix):
     print()
 
 
-def n_queen(matrix, row):
-
-    # if `N` queens are placed successfully, print the solution
-    if row == N:
+def n_queen(matrix, row, matrix_size):
+    # stop check
+    if row == matrix_size:
         print_matrix(matrix)
         return
 
     # place queen at every square in the current row `row`
     # and recur for each valid movement
-    for col in range(N):
+    for col in range(matrix_size):
 
         # if no two queens threaten each other
-        if is_safe(matrix, row, col):
+        if is_safe(matrix, row, col, matrix_size):
             # place queen on the current square
             matrix[row][col] = 'Q'
 
             # recur for the next row
-            n_queen(matrix, row + 1)
+            n_queen(matrix, row + 1, matrix_size)
 
             # backtrack and remove the queen from the current square
             matrix[row][col] = '–'
 
 
 if __name__ == '__main__':
-    # `N × N` chessboard
-    N = 8
-    # `matrix[][]` keeps track of the position of queens in
-    # the current configuration
-    mat = [['–' for x in range(N)] for y in range(N)]
-    n_queen(mat, 0)
+    for ms in [8]:  # ms: matrix size
+        mat = [['–' for col in range(ms)] for row in range(ms)]
+        n_queen(mat, 0, ms)
