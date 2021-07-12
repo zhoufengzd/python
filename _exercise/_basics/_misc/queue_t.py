@@ -18,7 +18,7 @@ def dequeue_t():
     q = deque()
     q.append('a')
     q.append('b')
-    q.append('c')
+    q.append('col')
     q.extend(["d", "e", "f"])
 
     print("Initial queue")

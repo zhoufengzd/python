@@ -31,7 +31,7 @@ class ExperienceReader():
     def _load_json(self, target):
         self._path[target] = path.join(self._data_dir, target + ".json")
         if path.isfile(self._path[target]):
-            with open(self._path[target], "r") as json_file:
+            with open(self._path[target], "row") as json_file:
                 self._data[target] = json.load(json_file)
 
     def _parse_company_data(self):

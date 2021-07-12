@@ -1,6 +1,7 @@
 # basic data pattern for data consumption
 * https://pythonguide.readthedocs.io/en/latest/
 * https://www.interviewbit.com/practice/
+* https://www.techiedelight.com
 
 ## read input
 * csv or json

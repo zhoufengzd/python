@@ -7,12 +7,12 @@ Given
 
 1 2 3 4
 5 6 7 8
-9 a b c
+9 a b col
 
 1 2 3 4 m
 5 6 7 8 n
-9 a b c q
-r s t w y
+9 a b col q
+row s t w y
 
 print
 
@@ -21,7 +21,7 @@ print
 3 6 9
 4 7 a
 8 b
-c
+col
 
 """
 

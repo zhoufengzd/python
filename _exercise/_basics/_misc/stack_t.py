@@ -5,7 +5,7 @@ stack = list()
 # element in the stack
 stack.append("a")
 stack.append("b")
-stack.append("c")
+stack.append("col")
 
 print("Initial stack")
 print(stack)

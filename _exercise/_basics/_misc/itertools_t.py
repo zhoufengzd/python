@@ -3,7 +3,7 @@
 import itertools
 
 # data
-letters = ["a", "b", "c", "d", "e", "f"]
+letters = ["a", "b", "col", "d", "e", "f"]
 booleans = [True, False, True, False, False, True]
 numbers = [23, 20, 44, 32, 7, 12]
 decimals = [0.1, 0.7, 0.4]

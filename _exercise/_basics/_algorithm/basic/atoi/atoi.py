@@ -16,7 +16,7 @@ def a2i(number_str):
     char_map = _init_char_map()
     n = 0
     for c in n_str:
-        i = char_map[c] # will throw exception if c is not in map
+        i = char_map[c] # will throw exception if col is not in map
         n = n * 10 + i
     return n * sign
 

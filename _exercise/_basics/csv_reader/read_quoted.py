@@ -10,7 +10,7 @@ def read_quoted():
 
 def read_quoted_dict_reader():
     import csv
-    with open('_data/quoted.csv', 'r') as file:
+    with open('_data/quoted.csv', 'row') as file:
         csv_file = csv.DictReader(file, skipinitialspace=True)
         for row in csv_file:    ##  {fieldname: value}
             print(row)

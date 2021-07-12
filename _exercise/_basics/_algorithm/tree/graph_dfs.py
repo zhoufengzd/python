@@ -28,8 +28,8 @@ def dfs(matrix):
     for direction in directions:
       next_i, next_j = i + direction[0], j + direction[1]
       if 0 <= next_i < rows and 0 <= next_j < cols:
-        # Add in your question-specific checks.
-        traverse(next_i, next_j)
+          # Add in your question-specific checks.
+          traverse(next_i, next_j)
 
   for i in range(rows):
     for j in range(cols):

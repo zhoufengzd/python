@@ -5,24 +5,20 @@
 # After all 100 monkeys have done their work in this way, which doors are left open?
 # door(n) = touched if n % monkey_id = 0
 
-# observe the factors,
-#   all odd numbers will remain open since factors(n) = {1... n}
-#   all even numbers
-
+# observe the factors(n). If even number of monkeys touch the door, door will be closed at the end.
+# only if n is perfect square, then sqrt(n) is only added once, odd number of monkeys touch the door.
 def factors(n):
     import math
     res = list()
-    res.append(1)
-    for i in range(2, int(math.sqrt(n) + 1)):
+    for i in range(1, int(math.sqrt(n) + 1)):
         if n % i == 0:
             res.append(i)
-            if i != n // i:
+            if i != n // i: # not square root
                 res.append(n // i)
-    res.append(n)
     return sorted(res)
 
 
 if __name__ == "__main__":
-    for dt in [10, 100]
+    for dt in [1, 2, 4, 7, 10, 100]:
         result = factors(dt)
         print(f"{dt} -> {len(result)}: {result}")

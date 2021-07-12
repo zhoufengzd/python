@@ -18,7 +18,9 @@ def print_matrix(matrix):
 
 
 if __name__ == "__main__":
-    output = solveNQueens(8)
-    for o in output:
-        print_matrix(o)
-        print("---------------")
+    for n in range(1, 10):
+        print(f"n={n}")
+        output = solveNQueens(n)
+        for o in output:
+            print_matrix(o)
+            print("---------------")
