@@ -1,14 +1,8 @@
-# dynamic programming:
-* recursive with state memorized
-* https://web.stanford.edu/class/cs97si/04-dynamic-programming.pdf
+# Back Tracking
+* Tree depth first traversal
+* May have multiple children
+* Node may be blocked
 
-## steps:
-* subproblems:
-    * how targets get updated? fixed input, index move to next
-    * how to rollback optionally?
-* recursive pattern
-* base solution
-* fail early: filter out non-working path ealier
 
 ## google's OR tools
 * combinatorial optimization
