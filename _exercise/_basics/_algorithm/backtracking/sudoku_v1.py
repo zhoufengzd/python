@@ -5,6 +5,7 @@
 def print_matrix(matrix):
     for row in matrix:
         print(" ".join([str(i) for i in row]))
+    print("------------------")
 
 
 def get_targets(matrix):
@@ -17,7 +18,7 @@ def get_targets(matrix):
     return targets
 
 
-def is_valid(matrix, current_row, current_col, n):
+def allowed(matrix, current_row, current_col, n):
     row_size = col_size = len(matrix)
     # check if number used
     for col in range(col_size):
@@ -39,7 +40,7 @@ def is_valid(matrix, current_row, current_col, n):
     return True
 
 
-def dfs(matrix, targets, tgt_idx, values):
+def process_node(matrix, targets, tgt_idx, values):
     if tgt_idx == len(targets):
         print_matrix(matrix)
         print("--------------------")
@@ -47,10 +48,10 @@ def dfs(matrix, targets, tgt_idx, values):
 
     row, col = targets[tgt_idx]
     for i in values:
-        if is_valid(matrix, row, col, i):
+        if allowed(matrix, row, col, i):
             matrix[row][col] = i
-            # dfs until done
-            dfs(matrix, targets, tgt_idx + 1, values)
+            # process_node until done
+            process_node(matrix, targets, tgt_idx + 1, values)
         # rollback
         matrix[row][col] = 0
 
@@ -70,4 +71,4 @@ if __name__ == "__main__":
             [0, 0, 5, 2, 0, 6, 3, 0, 0] ]
 
     v = [i for i in range(1, 9 + 1)]
-    dfs(mat, get_targets(mat), 0, v)
+    process_node(mat, get_targets(mat), 0, v)
