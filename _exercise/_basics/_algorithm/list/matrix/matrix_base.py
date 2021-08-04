@@ -13,8 +13,15 @@ class Matrix:
             n += col_size
 
     def __str__(self):
+        result_str = ""
         for row in self.matrix:
-            print(" ".join([f"{e:2}" for e in row]))
+            if result_str:
+                result_str += "\n"
+            result_str += " ".join([f"{e:2}" for e in row])
+        return result_str
+
+    def __repr__(self):
+        return self.__str__()
 
 
 if __name__ == "__main__":

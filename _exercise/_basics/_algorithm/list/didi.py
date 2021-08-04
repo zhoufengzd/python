@@ -22,16 +22,16 @@ def di_pattern(pattern):
         # stack with range of numbers in incremental order
         stack.append(i + 1)
 
-    if (i == len(pattern) or pattern[i] == 'I'):
-        # clear numbers from the incremental buffer
-        # previous pattern is "D..."
-        while len(stack) > 0:
-            res.append(stack.pop())
+        if (i == len(pattern) or pattern[i] == 'I'):
+            # clear numbers from the incremental buffer
+            # previous pattern is "D..."
+            while len(stack) > 0:
+                res.append(stack.pop())
 
     return res
 
 
 if __name__ == "__main__":
     # for ptn in ["I", "D", "DD", "II", "IDID", "IIDDD", "DDIDDIID"]:
-    for ptn in ["DI"]:
+    for ptn in ["IDI"]:
         print(f"{ptn} => {di_pattern(ptn)}")

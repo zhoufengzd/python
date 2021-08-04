@@ -9,6 +9,9 @@ class Node:
     def __eq__(self, other):
         return self.id == other.id
 
+    def __hash__(self):
+        return self.id
+
     def __str__(self):
         return str(f"{self.id}({self.tag})")
 
