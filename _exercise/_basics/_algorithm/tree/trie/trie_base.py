@@ -11,10 +11,8 @@ class Node:
 
 
 class Context:
-    def __init__(self, prefix=None):
-        self.prefix = prefix
-        self.traversed = list()
-        self.words = list()
+    def __init__(self):
+        self.visited = list()
 
 
 class Trie:
@@ -38,24 +36,29 @@ class Trie:
         if node.depth == -1:  # root
             return True
 
-        # search
-        if node.depth < len(ctxt.prefix):
-            return node.char == ctxt.prefix[node.depth]
+        if not self.addition_check(node, ctxt):
+            return False
         return True
 
-    def process_node(self, node, ctxt):
-        if node.word_end and node.depth >= (len(ctxt.prefix) - 1):
-            ctxt.words.append("".join([nd.char for nd in ctxt.traversed if nd.char]))
+    def next_nodes(self, node, ctxt):
+        return node.children.values()
 
     def traverse(self, node, ctxt):
         if not self.allowed(node, ctxt):
             return
 
-        ctxt.traversed.append(node)
+        ctxt.visited.append(node)
         self.process_node(node, ctxt)
-        for nd in node.children.values():
+        for nd in self.next_nodes(node, ctxt):
             self.traverse(nd, ctxt)
-        ctxt.traversed.pop()  # rollback
+        ctxt.visited.pop()  # rollback
+
+    def addition_check(self, node, ctxt):
+        return True
+
+    def process_node(self, node, ctxt):
+        pass
+
 
 
 if __name__ == "__main__":
@@ -63,8 +66,5 @@ if __name__ == "__main__":
     for wd in ["the", "a", "there", "answer", "any", "by", "bye", "their"]:
         t.add(wd)
 
-    for pre in ["an", "thei"]:
-        ct = Context()
-        ct.prefix = pre
-        t.traverse(t.root, ct)
-        print(ct.words)
+    ct = Context()
+    t.traverse(t.root, ct)
