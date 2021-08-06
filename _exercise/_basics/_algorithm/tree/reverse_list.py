@@ -26,6 +26,11 @@ def print_linked(root):
 
 
 def reverse_linked(root):
+    """
+    * keep next node to continue the iteration,
+    * reset curr.next to prev
+    * update prev / curr
+    """
     prev = next = None
     curr = root
     while curr:

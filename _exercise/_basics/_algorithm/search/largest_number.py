@@ -2,6 +2,7 @@
 def iterate(numbers):
     max_length = len(str(max(numbers)))
     def padding(n):
+        """ trick: 31, 3 => 31 vs 3(3) => 3 31 in stead of 31 3"""
         n_str = str(n)
         pad = n_str[0]
         return n_str.ljust(max_length, pad)
