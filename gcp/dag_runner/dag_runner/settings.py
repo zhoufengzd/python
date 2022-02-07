@@ -269,7 +269,7 @@ class Settings:
             return stages
 
         for stage in stage_settings:
-            stage_id = stage["stage"]
+            stage_id = int(stage["stage"])
 
             steps = stages.get(stage_id)
             if not steps:

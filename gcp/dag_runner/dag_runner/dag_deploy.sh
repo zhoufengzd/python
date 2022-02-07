@@ -5,9 +5,13 @@ wk_dir=$(pwd)
 
 ## 1. set environment
 dag_source_dir=$1
-gcp_region=${GCP_REGION:-us-east1}
-gcp_project="${GCP_PROJECT:-${GOOGLE_CLOUD_PROJECT:-${PROJECT}}}"
-gcp_composer=${gcp_project}-composer
+gcp_project=${GCP_PROJECT:-${GOOGLE_CLOUD_PROJECT:-${PROJECT}}}
+
+default_ifs="$IFS"
+IFS="| " composer_config=($(gcloud composer environments list --locations=us-west1,us-west2,us-east1 | grep RUNNING))
+IFS=$default_ifs
+gcp_composer=${composer_config[1]}
+gcp_region=${composer_config[3]}
 
 ## 2. upload to composer
 function __deploy {

@@ -1,0 +1,21 @@
+demo_dag:
+  app_settings:
+    dag_catchup: false
+    schedule: null
+    start_date: null
+
+    gcp_project: test
+    gcs_staging: gs://staging-test
+
+    params:
+      federated_query_connection: null
+
+    tables:
+    - table: mapped_table
+    templates: null
+
+    stages:
+    - stage: 1
+      sql: dummy.sql
+      output: bq.dummy_table
+      write_disposition: WRITE_TRUNCATE
